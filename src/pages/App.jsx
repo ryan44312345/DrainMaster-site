@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Tragedy from './components/Tragedy';
-import Problems from './components/Problems';
-import Solutions from './components/Solutions';
-import Footer from './components/Footer';
-import './index.css';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
+import Tragedy from '../components/Tragedy';
+import Problems from '../components/Problems';
+import Solutions from '../components/Solutions';
+import Footer from '../components/Footer';
+import '../index.css';
 
 gsap.registerPlugin(ScrollTrigger);
 

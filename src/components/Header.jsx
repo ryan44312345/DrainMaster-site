@@ -25,8 +25,8 @@ const Header = () => {
         </ul>
       </nav>
       <div className="flex-1 flex justify-end">
-        <a href="#contato" className={`px-6 py-2 backdrop-blur-md border rounded-full font-semibold text-sm transition-colors ${scrolled ? 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800' : 'bg-white/10 border-white/30 text-white hover:bg-white/30'}`}>
-          Contatos
+        <a href="./login" className={`px-6 py-2 backdrop-blur-md border rounded-full font-semibold text-sm transition-colors ${scrolled ? 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800' : 'bg-white/10 border-white/30 text-white hover:bg-white/30'}`}>
+          Login
         </a>
       </div>
     </header>
