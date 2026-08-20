@@ -5,6 +5,7 @@ import './index.css'
 import App from './pages/App.jsx'
 import Cadastro from './pages/Cadastro.jsx'
 import Login from './pages/Login.jsx'
+import Jogo from './pages/Jogo.jsx'
 import NotFound from './pages/NotFound.jsx';
 
 createRoot(document.getElementById('root')).render(
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/" element={<App />} />
       <Route path='/cadastro' element={<Cadastro/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
+      <Route path='/jogo' element={<Jogo/>}></Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
     </BrowserRouter>
