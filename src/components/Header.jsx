@@ -12,11 +12,11 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`hidden fixed top-0 left-0 w-full px-6 md:px-20 py-2 flex justify-between items-center z-50 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${scrolled ? 'bg-white/10 backdrop-blur-md py-4 border-b border-white/20 text-slate-900' : 'text-white'}`}>
+    <header className={`fixed top-0 left-0 w-full px-6 md:px-20 py-2 flex justify-between items-center z-50 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${scrolled ? 'bg-white/10 backdrop-blur-md py-4 border-b border-white/20 text-slate-900' : 'text-white'}`}>
       <div className="font-extrabold text-2xl tracking-wide flex-1">
         DrainMaster
       </div>
-      <nav className="hidden md:flex flex-1 justify-center">
+      <nav className="md:flex flex-1 justify-center">
         <ul className="flex list-none gap-8">
           <li><a href="#hero" className="font-medium text-sm hover:opacity-70 transition-opacity">Início</a></li>
           <li><a href="#historia" className="font-medium text-sm hover:opacity-70 transition-opacity">História</a></li>

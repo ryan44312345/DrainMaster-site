@@ -3,7 +3,7 @@ import imgBgFloresta from '../assets/image.png';
 
 const Footer = () => {
   return (
-    <footer className="relative text-white pt-16 px-6 md:px-12 pb-0 overflow-hidden">
+    <footer id="contato" className="relative text-white pt-16 px-6 md:px-12 pb-0 overflow-hidden">
       
       {/* Imagem de fundo (mesma da seção Soluções) */}
       <div className="absolute inset-0 z-0">

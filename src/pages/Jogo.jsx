@@ -1,144 +1,265 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Maximize, Minimize } from 'lucide-react';
-import { FaTwitter, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
+import {
+  AlertTriangle,
+  BarChart3,
+  Check,
+  Eye,
+  Gamepad2,
+  HeartHandshake,
+  Lightbulb,
+  Maximize,
+  Minimize,
+  MousePointerClick,
+  RotateCcw,
+  SlidersHorizontal,
+  Star,
+  Trophy,
+} from 'lucide-react';
 import { Link } from 'react-router';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import capa from '../assets/capa-jogo.jpeg';
 
+/* ── Tokens visuais (referência: mock DrainMaster) ─────────────────── */
+const INK = '#161B21';
+const AMBER = '#ECA400';
+
+const HOW_TO_PLAY = [
+  { icon: Eye, text: 'Observe a situação da cidade durante os primeiros minutos.' },
+  { icon: MousePointerClick, text: 'Clique nas opções para ver os detalhes e consequências.' },
+  { icon: SlidersHorizontal, text: 'Escolha as melhorias adequadas para resolver cada situação.' },
+  { icon: Trophy, text: 'Ganhe pontos e avance pelos níveis!' },
+];
+
+/* Valores ilustrativos — serão sincronizados com o jogo futuramente. */
+const PROGRESS = [
+  { icon: Star, value: '1250', label: 'Pontos' },
+  { icon: BarChart3, value: '4', label: 'Fases Completas' },
+  { icon: Trophy, value: '85%', label: 'Drenagem' },
+];
+
+const RANKING = [
+  { position: 1, name: 'Ana P.', points: 2480 },
+  { position: 2, name: 'Bruno S.', points: 2140 },
+  { position: 3, name: 'Carla M.', points: 1875 },
+  { position: 4, name: 'Diego F.', points: 1520 },
+  { position: 5, name: 'Você', points: 1250, isYou: true },
+];
+
+const EXPLORE_CARDS = [
+  {
+    title: 'Entenda os Problemas',
+    text: 'Descubra as principais causas de alagamentos e seus impactos na cidade.',
+    image: '/problems/img1.png',
+    alt: 'Rua alagada durante chuva forte',
+    icon: AlertTriangle,
+    href: '/#problemas',
+  },
+  {
+    title: 'Conheça as Soluções',
+    text: 'Veja como as obras de infraestrutura podem transformar nossa realidade.',
+    image: '/problems/img2.png',
+    alt: 'Água da chuva escorrendo pelo asfalto',
+    icon: Lightbulb,
+    href: '/#solucoes',
+  },
+  {
+    title: 'Seja a Mudança',
+    text: 'Cada pessoa pode fazer a diferença para uma Caraguatatuba melhor.',
+    image: '/problems/img3.png',
+    alt: 'Vista aérea de margem de rio em processo de erosão',
+    icon: HeartHandshake,
+    href: '/cadastro',
+  },
+];
+
+/* ── Página ────────────────────────────────────────────────────────── */
 const Jogo = () => {
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const gameContainerRef = useRef(null);
-
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      if (gameContainerRef.current.requestFullscreen) {
-        gameContainerRef.current.requestFullscreen();
-      } else if (gameContainerRef.current.webkitRequestFullscreen) {
-        gameContainerRef.current.webkitRequestFullscreen();
-      } else if (gameContainerRef.current.msRequestFullscreen) {
-        gameContainerRef.current.msRequestFullscreen();
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      }
-    }
-  };
-
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-    document.addEventListener('msfullscreenchange', handleFullscreenChange);
-
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen relative overflow-x-hidden flex flex-col pt-8 pb-12 px-4 md:px-12 bg-blue-50/50">
-      {/* Background organic blobs (matching the comp) */}
-      <div className="absolute top-[-10%] left-[-5%] w-[40vw] h-[50vh] bg-blue-200/50 rounded-full blur-[80px] -z-10 mix-blend-multiply"></div>
-      <div className="absolute top-[20%] right-[-10%] w-[35vw] h-[45vh] bg-orange-200/50 rounded-full blur-[80px] -z-10 mix-blend-multiply"></div>
-      <div className="absolute bottom-[-10%] left-[10%] w-[40vw] h-[40vh] bg-cyan-200/50 rounded-full blur-[80px] -z-10 mix-blend-multiply"></div>
+    <div className="min-h-screen bg-[#F1F1EC]">
+      <Header/>
+      <main>
+        {/* ── Desafios da Drenagem ──────────────────────────────────── */}
+        <section className="relative overflow-hidden px-6 py-16 md:py-24">
+          {/* Fragmentos decorativos de fundo */}
+          <svg
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-12 top-48 hidden w-44 text-[#161B21] lg:block"
+            style={{ opacity: 0.05 }}
+            viewBox="0 0 200 200"
+            fill="currentColor"
+          >
+            <polygon points="0,10 130,40 70,130 15,95" />
+            <polygon points="150,140 190,120 200,180 140,190" />
+          </svg>
+          <svg
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 top-24 hidden w-56 text-[#161B21] lg:block"
+            style={{ opacity: 0.05 }}
+            viewBox="0 0 240 240"
+            fill="currentColor"
+          >
+            <polygon points="40,0 240,30 170,140 90,90" />
+            <polygon points="10,150 60,130 80,200 0,220" />
+          </svg>
 
-      {/* Header */}
-      <header className="relative z-10 w-full max-w-6xl mx-auto flex items-center justify-between mb-8">
-        <Link 
-          to="/" 
-          className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm hover:bg-white/60 transition-colors text-slate-800 font-semibold"
-        >
-          <ArrowLeft size={20} />
-          <span>Voltar</span>
-        </Link>
-        <h1 className="text-3xl md:text-4xl font-display text-slate-800 absolute left-1/2 -translate-x-1/2">
-          DrainMaster
-        </h1>
-        <div className="w-[100px] hidden md:block"></div>
-      </header>
-
-      {/* Main Content Area */}
-      <main className="relative z-10 flex-1 w-full max-w-6xl mx-auto flex flex-col items-center">
-        
-        {/* Game and Sidebar Container */}
-        <div 
-          ref={gameContainerRef}
-          className={`flex flex-col md:flex-row gap-4 p-4 rounded-[28px] bg-white/30 backdrop-blur-xl border border-white/50 shadow-2xl transition-all duration-300 w-full ${
-            isFullscreen ? 'fixed inset-0 z-50 rounded-none bg-black p-0 gap-0' : 'max-w-5xl'
-          }`}
-        >
-          {/* Game Area */}
-          <div className={`relative flex-1 rounded-[20px] overflow-hidden bg-slate-900 flex flex-col items-center justify-center ${isFullscreen ? 'rounded-none' : 'aspect-[16/9]'}`}>
-            
-            <iframe 
-              src="/game/index.html" 
-              title="DrainMaster Game"
-              className="absolute inset-0 w-full h-full border-0 z-10"
-              allow="fullscreen; autoplay; encrypted-media"
-            ></iframe>
-
-            {/* Fullscreen Toggle Button (Overlay) */}
-            <button 
-              onClick={toggleFullscreen}
-              className="absolute top-4 right-4 z-20 p-2.5 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full transition-all flex items-center justify-center shadow-lg border border-white/10"
-              aria-label={isFullscreen ? "Sair da tela cheia" : "Tela cheia"}
-            >
-              {isFullscreen ? <Minimize size={20} /> : <Maximize size={20} />}
-            </button>
-            
-            {/* Fallback visual state if game isn't loaded */}
-            {!isFullscreen && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white/40 pointer-events-none">
-                <div className="w-10 h-10 border-4 border-slate-600 border-t-brand-accent rounded-full animate-spin mb-4"></div>
-                <span className="font-semibold tracking-wide text-sm">Carregando Motor...</span>
-              </div>
-            )}
-          </div>
-
-          {/* Social / Action Sidebar (matches the reference comp) */}
-          {!isFullscreen && (
-            <div className="flex md:flex-col gap-3 justify-center items-center p-3 rounded-[20px] bg-white/40 backdrop-blur-md border border-white/50 min-w-[80px]">
-              <a href="#" className="p-3 bg-white/60 hover:bg-white border border-white/80 text-slate-700 hover:text-blue-500 rounded-2xl shadow-sm transition-all">
-                <FaTwitter size={24} />
-              </a>
-              <a href="#" className="p-3 bg-white/60 hover:bg-white border border-white/80 text-slate-700 hover:text-blue-700 rounded-2xl shadow-sm transition-all">
-                <FaFacebookF size={24} />
-              </a>
-              <a href="#" className="p-3 bg-white/60 hover:bg-white border border-white/80 text-slate-700 hover:text-pink-600 rounded-2xl shadow-sm transition-all">
-                <FaInstagram size={24} />
-              </a>
-              <a href="#" className="p-3 bg-white/60 hover:bg-white border border-white/80 text-slate-700 hover:text-red-600 rounded-2xl shadow-sm transition-all">
-                <FaYoutube size={24} />
-              </a>
+          <div className="relative mx-auto max-w-[1200px]">
+            <div className="max-w-2xl">
+              <p
+                className="animate-fade-up text-xs font-bold uppercase tracking-[0.22em]"
+                style={{ color: AMBER }}
+              >
+                Jogo Educativo
+              </p>
+              <h1
+                className="animate-fade-up mt-3 font-serif text-4xl font-bold tracking-tight text-[#161B21] md:text-5xl"
+                style={{ animationDelay: '0.08s' }}
+              >
+                Desafios da Drenagem
+              </h1>
+              <p
+                className="animate-fade-up mt-4 max-w-xl text-base leading-relaxed text-[#4A5158] md:text-lg"
+                style={{ animationDelay: '0.16s' }}
+              >
+                Ajude a manter a cidade segura. Faça as escolhas certas e evite
+                enchentes, poluição e danos à infraestrutura.
+              </p>
             </div>
-          )}
-        </div>
 
-        {/* Instructions Panel */}
-        <div className="mt-8 w-full max-w-4xl p-8 rounded-[28px] bg-white/40 backdrop-blur-xl border border-white/50 shadow-xl text-slate-800">
-          <h2 className="text-xl font-bold mb-3 tracking-wide text-slate-900">COMO JOGAR</h2>
-          <p className="text-slate-700 mb-4 font-medium">
-            Bem-vindo ao DrainMaster! Sua missão é projetar e construir o sistema de drenagem de água mais eficiente.
-          </p>
-          <ul className="space-y-2 text-slate-600 font-medium">
-            <li>1. Arraste e solte os canos para conectar a fonte de água ao ralo.</li>
-            <li>2. Use peças de junção especiais para otimizar o fluxo.</li>
-            <li>3. Gerencie a pressão e evite vazamentos!</li>
-          </ul>
-          <p className="mt-4 text-slate-500 font-medium italic">
-            Divertido e educativo para todas as idades.
-          </p>
-        </div>
+            <div className="mt-10 grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
+              {/* Coluna esquerda: jogo + ações */}
+              <div className="animate-fade-up min-w-0" style={{ animationDelay: '0.24s' }}>
+                <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-[#161B21]/8 bg-[#F1F1EC] shadow-[0_14px_35px_-24px_rgba(22,27,33,0.35)]">
+                  <img src={capa} alt="" />
+                </div>
+              </div>
 
+              {/* Coluna direita: instruções e progresso */}
+              <div className="flex flex-col gap-6">
+                <div
+                  className="animate-fade-up rounded-2xl border border-[#161B21]/8 bg-white p-6 shadow-[0_14px_35px_-24px_rgba(22,27,33,0.35)]"
+                  style={{ animationDelay: '0.3s' }}
+                >
+                  <h2 className="text-lg font-extrabold text-[#161B21]">Como Jogar</h2>
+                  <ul className="mt-5 space-y-4">
+                    {HOW_TO_PLAY.map((step, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <span
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F1F1EC]"
+                          style={{ color: INK }}
+                        >
+                          <step.icon size={17} aria-hidden="true" />
+                        </span>
+                        <p className="pt-1.5 text-sm leading-relaxed text-[#4A5158]">
+                          {step.text}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div
+                  className="animate-fade-up rounded-2xl border border-[#161B21]/8 bg-white p-6 shadow-[0_14px_35px_-24px_rgba(22,27,33,0.35)]"
+                  style={{ animationDelay: '0.38s' }}
+                >
+                  <h2 className="text-lg font-extrabold text-[#161B21]">Seu Progresso</h2>
+                  <ul className="mt-5 space-y-4">
+                    {PROGRESS.map((stat, index) => (
+                      <li key={index} className="flex items-center gap-3">
+                        <span
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F1F1EC]"
+                          style={{ color: INK }}
+                        >
+                          <stat.icon size={17} aria-hidden="true" />
+                        </span>
+                        <span>
+                          <span className="block text-xl font-extrabold leading-none text-[#161B21] tabular-nums">
+                            {stat.value}
+                          </span>
+                          <span className="mt-1 block text-xs font-medium text-[#6B7280]">
+                            {stat.label}
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 border-t border-[#161B21]/8 pt-3 text-[11px] text-[#8A8F98]">
+                    Valores de demonstração — em breve sincronizados com o jogo.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Cada Escolha Importa ──────────────────────────────────── */}
+        <section className="bg-[#14181F] px-6 py-20 text-white md:py-24">
+          <div className="mx-auto max-w-[1200px]">
+            <div className="mx-auto max-w-2xl text-center">
+              <p
+                className="animate-fade-up text-xs font-bold uppercase tracking-[0.22em]"
+                style={{ color: AMBER }}
+              >
+                Aprenda e faça a diferença
+              </p>
+              <h2
+                className="animate-fade-up mt-3 font-serif text-3xl font-bold tracking-tight md:text-5xl"
+                style={{ animationDelay: '0.08s' }}
+              >
+                Cada Escolha Importa
+              </h2>
+              <p
+                className="animate-fade-up mt-5 text-base leading-relaxed text-white/70"
+                style={{ animationDelay: '0.16s' }}
+              >
+                As decisões que você toma no jogo refletem desafios reais que
+                enfrentamos todos os dias em nossa cidade. Aprenda sobre drenagem
+                urbana enquanto se diverte e descubra como pequenas ações podem
+                transformar Caraguatatuba.
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {EXPLORE_CARDS.map((card, index) => (
+                <a
+                  key={card.title}
+                  href={card.href}
+                  className={`animate-fade-up group overflow-hidden rounded-2xl border border-white/8 bg-[#1D232C] shadow-[0_20px_45px_-25px_rgba(0,0,0,0.7)] transition-all duration-300 hover:-translate-y-1.5 hover:border-white/15 hover:shadow-[0_28px_55px_-25px_rgba(0,0,0,0.8)]`}
+                  style={{ animationDelay: `${0.24 + index * 0.08}s` }}
+                >
+                  <div className="relative h-44 overflow-hidden">
+                    <img
+                      src={card.image}
+                      alt={card.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-gradient-to-t from-[#1D232C] to-transparent"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span
+                      className="flex h-10 w-10 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110"
+                      style={{ backgroundColor: AMBER, color: INK }}
+                    >
+                      <card.icon size={19} aria-hidden="true" />
+                    </span>
+                    <h3 className="mt-4 text-lg font-bold">{card.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/65">
+                      {card.text}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
+
+      {/* ── Rodapé ──────────────────────────────────────────────────── */}
+      <Footer />
     </div>
   );
 };

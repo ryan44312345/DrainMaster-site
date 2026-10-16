@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrainMaster - Jogo Educativo sobre Drenagem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>DrainMaster</h1>
+            <p class="subtitle">Jogo Educativo sobre Drenagem Urbana</p>
+        </header>
+
+        <main class="game-main">
+            <section class="game-info">
+                <h2>Sobre o Jogo</h2>
+                <p>Aprenda sobre soluções de drenagem urbana enquanto se diverte! Neste jogo, você vai:</p>
+                <ul>
+                    <li>Entender os problemas de enchentes em áreas urbanas</li>
+                    <li>Aprender sobre diferentes soluções de drenagem</li>
+                    <li>Projetar seu próprio sistema de drenagem eficiente</li>
+                    <li>Ganhar pontos por escolhas sustentáveis</li>
+                </ul>
+            </section>
+
+            <section class="game-play" id="game-play">
+                <div class="game-board" id="game-board">
+                    <!-- Game board will be dynamically generated -->
+                </div>
+
+                <aside class="game-sidebar">
+                    <div class="tools-panel">
+                        <h3>Ferramentas de Drenagem</h3>
+                        <div class="tool-item" data-tool="basin" title="Piscinão/Reservatório">
+                            <img src="Reservatório_02.jpg" alt="Piscinão/Reservatório" class="tool-image">
+                            <span>Piscinão</span>
+                        </div>
+                        <div class="tool-item" data-tool="garden" title="Jardim de Chuva">
+                            <img src="jardins-de-chuva-1024x683.webp" alt="Jardim de Chuva" class="tool-image">
+                            <span>Jardim de Chuva</span>
+                        </div>
+                        <div class="tool-item" data-tool="desilting" title="Desassoreamento">
+                            <img src="desassoreamento-das-margens-do-Rio-Santo-Antonio-1.jpg" alt="Desassoreamento" class="tool-image">
+                            <span>Desassoreamento</span>
+                        </div>
+                        <div class="tool-item" data-tool="permeable" title="Pavimento Permeável">
+                            <img src="hero.png" alt="Pavimento Permeável" class="tool-image">
+                            <span>Pavimento Permeável</span>
+                        </div>
+                    </div>
+
+                    <div class="game-stats">
+                        <h3>Seus Pontos</h3>
+                        <div class="stat-item">
+                            <span>Eficiência:</span>
+                            <span class="stat-value" id="efficiency-score">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Sustentabilidade:</span>
+                            <span class="stat-value" id="sustainability-score">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Custo:</span>
+                            <span class="stat-value" id="cost-score">$0</span>
+                        </div>
+                    </div>
+
+                    <button id="reset-game" class="btn-reset">Reiniciar Jogo</button>
+                    <button id="check-solution" class="btn-check">Verificar Solução</button>
+                </aside>
+            </section>
+
+            <section class="game-results" id="game-results" style="display: none;">
+                <h2>Resultado da Simulação</h2>
+                <div class="results-content" id="results-content">
+                    <!-- Results will be shown here -->
+                </div>
+                <button id="play-again" class="btn-play-again">Jogar Novamente</button>
+            </section>
+        </main>
+
+        <footer class="game-footer">
+            <p>Desenvolvido para conscientização sobre drenagem urbana em Caraguatatuba</p>
+            <p>&copy; 2026 DrainMaster - Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
