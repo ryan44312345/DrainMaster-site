@@ -7,10 +7,12 @@ import Cadastro from './pages/Cadastro.jsx'
 import Login from './pages/Login.jsx'
 import Jogo from './pages/Jogo.jsx'
 import NotFound from './pages/NotFound.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+    <AuthProvider>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path='/cadastro' element={<Cadastro/>}></Route>
@@ -18,6 +20,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='/jogo' element={<Jogo/>}></Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )

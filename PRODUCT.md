@@ -19,6 +19,8 @@ Uma iniciativa local, educativa e encorajadora que traduz problemas de infraestr
 O site será acessado via navegadores (mobile e desktop) por cidadãos comuns, seja para fins educativos, campanhas locais ou busca de informações preventivas.
 
 ## Capabilities and Constraints
+- Login e cadastro seguem a referencia visual fornecida pelo usuario: fotografia de Caraguatatuba a esquerda e formulario branco a direita. No cadastro, acrescentar nome de usuario e confirmar senha. A fotografia fornecida pelo usuario tem sua marca de autoria preservada.
+- Autenticacao por e-mail e senha integrada a API NestJS/Prisma/MySQL. Nome de usuario corresponde ao campo `name` da API, sem identificador unico adicional. Google e Facebook ainda nao possuem OAuth configurado.
 - O foco atual está na página principal de conscientização (Soluções, Onde Ocorre, Como Resolver).
 - A integração com a página do jogo ocorrerá em uma etapa posterior.
 - Desenvolvido em ambiente Web moderno utilizando React, Vite, TailwindCSS e GSAP para interações.

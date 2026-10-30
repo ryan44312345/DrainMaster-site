@@ -1,0 +1,41 @@
+{
+  "name": "drainmaster-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build && npm start",
+    "build": "prisma generate && tsc",
+    "start": "node dist/src/main.js",
+    "test": "npm run build && node --test test/*.test.cjs",
+    "prisma:generate": "prisma generate",
+    "prisma:validate": "prisma validate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio"
+  },
+  "engines": { "node": ">=22.12.0" },
+  "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/config": "^4.0.0",
+    "@nestjs/jwt": "^11.0.0",
+    "@nestjs/throttler": "^6.0.0",
+    "@prisma/client": "^7.0.0",
+    "@prisma/adapter-mariadb": "^7.0.0",
+    "argon2": "^0.44.0",
+    "class-validator": "^0.14.2",
+    "class-transformer": "^0.5.1",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "prisma": "^7.0.0",
+    "typescript": "^5.9.0",
+    "@types/node": "^24.0.0",
+    "@types/express": "^5.0.0"
+  }
+}

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router';
+import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
+  const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -22,13 +25,13 @@ const Header = () => {
           <li><a href="#historia" className="font-medium text-sm hover:opacity-70 transition-opacity">História</a></li>
           <li><a href="#problemas" className="font-medium text-sm hover:opacity-70 transition-opacity">Problemas</a></li>
           <li><a href="#solucoes" className="font-medium text-sm hover:opacity-70 transition-opacity">Soluções</a></li>
-          <li><a href="/jogo" className="font-medium text-sm hover:opacity-70 transition-opacity">Jogar</a></li>
+          <li><Link to="/jogo" className="font-medium text-sm hover:opacity-70 transition-opacity">Jogar</Link></li>
         </ul>
       </nav>
       <div className="flex-1 flex justify-end">
-        <a href="./login" className={`px-6 py-2 backdrop-blur-md border rounded-full font-semibold text-sm transition-colors ${scrolled ? 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800' : 'bg-white/10 border-white/30 text-white hover:bg-white/30'}`}>
-          Login
-        </a>
+        <Link to="/login" className={`px-6 py-2 backdrop-blur-md border rounded-full font-semibold text-sm transition-colors ${scrolled ? 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800' : 'bg-white/10 border-white/30 text-white hover:bg-white/30'}`}>
+          {user ? 'Minha conta' : 'Login'}
+        </Link>
       </div>
     </header>
   );

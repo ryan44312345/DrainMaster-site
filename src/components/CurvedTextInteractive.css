@@ -1,0 +1,15 @@
+.curved-text-interactive { display: block; height: auto; }
+
+/* A escala parte do centro dos limites de cada letra, nao do SVG inteiro. */
+.curved-text-interactive__letter {
+  transform-box: fill-box;
+  transform-origin: center;
+  pointer-events: none;
+}
+.curved-text-interactive__cursor { pointer-events: none; }
+
+/* O JavaScript tambem observa essa preferencia e interrompe o RAF. */
+@media (prefers-reduced-motion: reduce) {
+  .curved-text-interactive__letter { transform: none !important; }
+  .curved-text-interactive__cursor { visibility: hidden; }
+}

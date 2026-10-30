@@ -1,0 +1,8 @@
+{
+  "source": "peixe-esqueleto.svg, extraido da ficha fornecida pelo usuario",
+  "edit": "Pupilas mais redondas e independentes. Barbatanas laterais e cauda isoladas por recortes e mascara, reutilizando a arte original com use; movimento suave via animateTransform. Espelhamento e acompanhamento pelo componente FishMascot. Original preservado.",
+  "body_repair": "Raizes fixas restauradas na mascara e volume vetorial preenchido por tras das barbatanas laterais; pequeno prolongamento osseo na conexao da cauda. Elimina recortes transparentes nas articulacoes durante a natacao.",
+  "border_repair": "Margem de 6 unidades da borda transferida integralmente do corpo fixo para cada barbatana e cauda. Removidas restauracoes de contornos estacionarios e bordas dos preenchimentos internos. Tampas de pele cobrem as raizes perto do rosto.",
+  "painted_joints": "Correcao: removidos recortes deslocados, gradientes de remendo e preenchimento osseo inventado. As bases e coberturas restauram apenas a arte original nas mesmas coordenadas, mantendo a cor e a transparencia reais de cada lado.",
+  "near_form_fin_fix": "Identificada a barbatana proxima dos campos: direita no SVG original, esquerda apos espelhar. Animacao limitada a y>=356, abaixo do rosto; cabeca e porcao superior da raiz permanecem na arte fixa, sem remendos. Pivo reposicionado na nova raiz, sobreposicao de 12 unidades e amplitude reduzida a 3 graus."
+}

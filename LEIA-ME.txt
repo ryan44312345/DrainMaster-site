@@ -1,0 +1,5 @@
+Para desenvolver: npm install e npm run dev.
+Para gerar a versão de produção: npm run build.
+A pasta dist contém o site pronto para hospedagem.
+O jogo está em public/drainmaster-game/Jogo.html com todos os arquivos originais.
+O navegador precisa oferecer WebGL2; em produção, utilize HTTPS.

@@ -18,7 +18,6 @@ import {
 import { Link } from 'react-router';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import capa from '../assets/capa-jogo.jpeg';
 
 /* ── Tokens visuais (referência: mock DrainMaster) ─────────────────── */
 const INK = '#161B21';
@@ -130,7 +129,13 @@ const Jogo = () => {
               {/* Coluna esquerda: jogo + ações */}
               <div className="animate-fade-up min-w-0" style={{ animationDelay: '0.24s' }}>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-[#161B21]/8 bg-[#F1F1EC] shadow-[0_14px_35px_-24px_rgba(22,27,33,0.35)]">
-                  <img src={capa} alt="" />
+                  <iframe
+                    src="/drainmaster-game/Jogo.html"
+                    title="DrainMaster — jogo de drenagem"
+                    className="h-full w-full border-0"
+                    allow="autoplay; fullscreen; gamepad"
+                    allowFullScreen
+                  />
                 </div>
               </div>
 
